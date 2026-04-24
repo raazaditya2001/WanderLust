@@ -1,0 +1,77 @@
+<% layout("/layouts/boilerplate")%>
+
+     
+    <div class="row">
+        <div class="col-8 offset-2">
+    <br>
+    <h2>Create your Listing</h2>
+    <br>
+
+    <form action="/listings" method="post" novalidate class="needs-validation" enctype="multipart/form-data">
+          
+          <div class="mb-3">
+            <label for="listing[title]" class="form-label" >Title</label>
+            <input name="listing[title]" class="form-control" required placeholder="Enter title">
+            <div class="invalid-feedback">
+                Please enter title
+            </div>
+          </div>
+
+        <div class="mb-3">
+            <label for="listing[description]" class="form-label">Description</label>
+            <textarea name="listing[description]" class="form-control" required9999 ></textarea>
+            <div class="invalid-feedback">
+                Write short description
+            </div>
+        </div>
+
+        <div class="mb-3 row">
+            <div class="price col-md-6">
+                    <label for="listing[price]" class="form-label">Price</label>
+            <input name="listing[price]" class="form-control"  required placeholder="Enter Price">
+            <div class="invalid-feedback">
+                Enter valid price
+            </div>
+        </div>
+
+            <div class=" category col-md-6">
+                    <label for="category" class="form-label">Category</label>
+                    
+                    <select name="listing[category]" class="form-control" required>
+                        <option>Select Category  </option>
+                        <option value="New Opens" name="listing[category]">New Opens </option>
+                        <option value="Top Place" name="listing[category]" >Top Place</option>
+                        <option value="Private Room" name="listing[category]" >Private Room</option>
+                        <option value="Cabins" name="listing[category]" >Cabins</option>
+                        <option value="Play" name="listing[category]" >Play</option>
+                        <option value="Adapted" name="listing[category]">Adapted</option>
+                        <option value="Modern City" name="listing[category]">Modern City</option>
+                        <option value="Tree Top" name="listing[category]">Tree Top</option>
+                    </select>
+            </div>
+         </div>
+            
+       
+        <div class="mb-3">
+            <label for="listing[location]" class="form-label">Location</label>
+            <input name="listing[location]" class="form-control" required placeholder="Enter Location">
+            <div class="invalid-feedback">
+                Enter valid location
+            </div>
+        </div>
+          
+
+        <div class="mb-3">
+            <label for="listing[image]" class="form-label">Upload image</label>
+            <input name="listing[image]" class="form-control" type="file" >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">ADD</button>
+        <br><br><br>
+        
+        
+
+    </form>
+    </div>
+    </div>
+

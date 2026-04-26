@@ -1,5 +1,6 @@
 <% layout("/layouts/boilerplate")%> 
 
+<!-- //filter  -->
 <div class="filter">
 <% for(filter of categories) { %>
     <a href="/listings?category=<%=filter.name%>">
@@ -10,11 +11,17 @@
 </a>
 <% } %>
 </div>
+<!-- price filter Switch -->
+    <div class="priceSwitch form-check form-check-reverse offset-10">
+        <label class="form-check-label" for="price">Price After Taxes</label>
+  <input class="form-check-input" type="checkbox" role="switch" id="taxPrice">
+  
+</div>
+<br>
 
-    <!-- <div class="form-check form-switch offset-10">
-  <input class="form-check-input" type="checkbox" role="switch" id="price">
-  <label class="form-check-label" for="price">Price After Taxes</label>
-</div> -->
+  <% if(allListings.length === 0 || !allListings){ %>
+                <h5 class="notFoundList">Listings Not Found</h5>
+           <% } %>
 
 
     <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1">
@@ -26,8 +33,9 @@
   <div class="card-body">
     <p class="card-text">
        <B><%=listing.title%></B>
-        <br>
-        ₹ <%=listing.price.toLocaleString("en-IN")%>/night
+       <br>
+        <span class="price"> ₹ <%=listing.price.toLocaleString("en-IN")%></span>/night
+        
     </p>
   </div>
 </div>
@@ -37,10 +45,29 @@
     </div>
 
     <script>
-        let priceCheckBox = document.querySelector("#price");
+
+        let priceCheckBox = document.querySelector("#taxPrice");
+
+        let priceObj = document.querySelectorAll(".price");
+        for(let price of priceObj){
+            let oldPrice = Number(price.innerText.replace(/[^0-9]/g,""));
+
         priceCheckBox.addEventListener("click",()=>{
             console.log("checkbox clicked");
+
+            if(oldPrice === Number(price.innerText.replace(/[^0-9]/g,""))){
+                let taxed = oldPrice * .18 ;
+                let newPrice = oldPrice + taxed;
+            price.innerHTML = "₹ &nbsp"+ newPrice.toLocaleString("en-IN");
+            
+        }else{
+                price.innerHTML = "₹ &nbsp"+ oldPrice.toLocaleString("en-IN");
+            
+            }
+        
+    
         })
+    }
 
     </script>
  

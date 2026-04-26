@@ -120,7 +120,7 @@ body{
 
  .searchContainer{
     border: rgba(0, 0, 0, 0.253) 2px solid;
-    padding: 5px 10px;
+    padding: .07rem .2rem;
     border-radius: 28px;
  }
  .search input{
@@ -130,6 +130,13 @@ body{
     width: 300px;
     background-color: none;
    
+}
+.search input::placeholder{
+    text-align: center;
+}
+.notFoundList{
+    color: red;
+    text-align: center;
 }
 
 .search button{
@@ -164,6 +171,20 @@ body{
 
 .filteritems:hover{
     color: black;
+}
+ 
+@media(max-width: 908px){
+    .filter{
+        display: none;
+    }
+
+    .searchContainer{
+        display: none;
+    }
+.priceSwitch{
+    width: 150px;
+    margin-right:5rem ;
+}
 }
 
    

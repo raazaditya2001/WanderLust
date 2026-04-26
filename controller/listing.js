@@ -9,13 +9,20 @@ const categories = require("../utils/categories.js");
 // index route
 module.exports.index = async (req,res,next)=>{
     //filter apply
-    const { category } = req.query;
+    const { category , location } = req.query;
+ 
 
-    let filterQuery ={};
+    const filter ={};
     if(category){
-        filterQuery.category= category;
+        filter.category= category;
     }
-    const allListings=await Listing.find(filterQuery);
+    
+    let filterLocation ={};
+    if(location){
+        filter.location = location;
+    }
+   
+    const allListings=await Listing.find(filter);
     res.render("listings/index.ejs",{allListings,categories});
     
 };

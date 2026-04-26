@@ -11,6 +11,8 @@ const {listingSchema}=require('./schemaValidation/schema.js');
 const Review =require("./models/review.js");
 const {reviewSchema} = require("./schemaValidation/reviewSchema.js");
 const session =require("express-session");
+// mongo storage for production level storage
+const MongoStore = require('connect-mongo').default;
 const flash=require('connect-flash');
 // passport
 const passport = require('passport');
@@ -38,7 +40,9 @@ app.use(methodOverride('_method'));
 app.engine('ejs',ejsMate);
 
 
-const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+// const MONGO_URL="mongodb://127.0.0.1:27017/wanderlust";
+//atlas db
+const dbUrl=process.env.ATLASDB_URL;
 
 main().then(()=>{
     console.log("connected to DB");
@@ -47,10 +51,25 @@ main().then(()=>{
 });
 
 async function main(){
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
 
+// mongo store
+const store = MongoStore.create({
+    mongoUrl : dbUrl,
+    crypto:{
+        secret:process.env.SECRET
+    },
+    touchAfter:24 * 3600,
+        
+    });
+
+store.on("error", () => {
+    console.log("ERROR in MONGO SESSION STORE",error);
+});
+
 const sessionOptions={
+    store,
     secret:process.env.SECRET,
     resave:false,
     saveUninitialized:true,

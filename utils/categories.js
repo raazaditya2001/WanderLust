@@ -2,13 +2,13 @@
 
 const categories = [
   { name: "New Opens", icon: "🆕" },
-  { name: "Top place", icon: "🔥" },
+  { name: "Top Place", icon: "🔥" },
   { name: "Trending", icon: "📈" },
-  { name: "Privates room", icon: "🚪" },
+  { name: "Privates Room", icon: "🚪" },
   { name: "Cabins", icon: "🏡" },
   { name: "Play", icon: "⚾" },
   { name: "Adapted", icon: "♿" },
-  { name: "Modern city", icon: "🏙️" },
+  { name: "Modern City", icon: "🏙️" },
   { name: "Tree Top", icon: "🌳" }
 ];
 
